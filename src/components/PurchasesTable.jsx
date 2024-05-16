@@ -23,6 +23,8 @@ const PurchasesTable = ({ handleOpen, setInfo}) => {
 
 
    } 
+   console.log(purchases)
+
    const columns = [
     
      {
@@ -30,7 +32,7 @@ const PurchasesTable = ({ handleOpen, setInfo}) => {
        headerName: "Date",
        flex: 1,
        minWidth: 100,
-       valueGetter: (value, row) => new Date(row.createdAt).toLocaleDateString("tr-TR"),
+       valueGetter: (value, row) => new Date(row.createdAt).toLocaleTimeString("tr-TR"),
      },
      {
        field: "firmId",
@@ -52,7 +54,7 @@ const PurchasesTable = ({ handleOpen, setInfo}) => {
        flex: 1.1,
        miWidth: 110,
        editable: true,
-       valueGetter: (value, row) => row.brandId?.name,
+       valueGetter: (value) => value.name,
      },
      {
        field: "productId",
@@ -69,7 +71,7 @@ const PurchasesTable = ({ handleOpen, setInfo}) => {
       minWidth: 50,
       headerAlign: "center",
       align: "center",
-      valueGetter: (value, row) => row.price,
+      valueGetter: (value, row) => row.quantity,
     },
      {
       field: "price",

@@ -24,6 +24,8 @@ export default function PurchasesModal({ handleClose, open, info, setInfo }) {
 
 	const { getStock, postStock, putStock } = useStockRequest();
    const navigate = useNavigate();
+	
+	
 	const handleChange = (e) => {
 		setInfo({ ...info, [e.target.name]: e.target.value });
       if (e.target.value==="newFirm"){
@@ -51,9 +53,9 @@ export default function PurchasesModal({ handleClose, open, info, setInfo }) {
 	};
 
    useEffect(() => {
-      //getStock("firms")
-      //getStock("brands")
-      //getStock("products")
+      getStock("firms")
+      getStock("brands")
+      getStock("products")
    }, [])
    
    const {firms, brands, products} = useSelector((state) => state.stock)
@@ -80,7 +82,7 @@ export default function PurchasesModal({ handleClose, open, info, setInfo }) {
 								labelId="firmLabel"
 								id="firmId"
 								name="firmId"
-								value={info.firmId}
+								value={info?.firmId?._id || info?.firmId}
 								label="Firm"
 								onChange={handleChange}
 							>
@@ -100,7 +102,7 @@ export default function PurchasesModal({ handleClose, open, info, setInfo }) {
 								labelId="brandLabel"
 								id="brandId"
 								name="brandId"
-								value={info.brand}
+								value={info?.brandId?._id || info?.brandId}
 								label="Brand"
 								onChange={handleChange}
 							>
@@ -119,7 +121,7 @@ export default function PurchasesModal({ handleClose, open, info, setInfo }) {
 								labelId="productLabel"
 								id="productId"
 								name="productId"
-							   value={info.productId}
+							   value={info?.productId?._id || info?.productId}
                         defaultValue={info.productId}
 								label="Product"
 								onChange={handleChange}
